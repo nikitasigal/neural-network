@@ -9,7 +9,8 @@
 #include <SFML/Graphics.hpp>
 using namespace std;
 
-#define clause(n) n[1]>0
+template<typename T>
+constexpr auto clause(T n) { return n[1]>0; }
 const long double ETA = 0.075, ACCURACY = 0.001;
 const int POOL_SIZE = 25000, BATCH_SIZE = 1000, FLOW_SIZE = 7;
 
@@ -84,7 +85,7 @@ public:
 		x[4] = sin(x[0]);
 		x[5] = sin(x[1]);
 		x[6] = x[0] * x[1];
-		y = clause(x) ? 1 : 0;
+		y = clause(x);
 	}
 };
 
@@ -351,7 +352,7 @@ int main()
 			window.draw(pixel);
 
 			//правильный график
-			answer = clause(in) ? 1 : 0;
+			answer = clause(in);
 			if (round(answer))
 				pixel.setFillColor(orange);
 			else
