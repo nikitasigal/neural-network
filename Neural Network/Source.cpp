@@ -9,6 +9,8 @@
 #include <SFML/Graphics.hpp>
 using namespace std;
 
+#define clause(s) s[6] > 0 ? 1 : 0
+
 long double sigmoid(long double arg)
 {
 	return 1 / (1 + exp(-arg));
@@ -79,7 +81,7 @@ public:
 		x[4] = sin(x[0] * 100);
 		x[5] = sin(x[1] * 100);
 		x[6] = x[0] * x[1];
-		y = ((x[1] > 1 / x[0] && x[0] > 0) || (x[1] < 1 / x[0] && x[0] < 0)) ? 1 : 0;
+		y = clause(x);
 	}
 };
 
@@ -318,7 +320,7 @@ int main()
 			long double answer = lr[N_LAYERS - 1].a[0];
 
 			//вычисление правильного ответа
-			long double right = ((in[1] > 1 / in[0] && in[0] > 0) || (in[1] < 1 / in[0] && in[0] < 0)) ? 1 : 0;
+			long double right = clause(in);
 
 			//нахождение стоимости и проверка ответа
 			cost = pow(right - answer, 2);
