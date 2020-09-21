@@ -9,7 +9,10 @@
 #include <SFML/Graphics.hpp>
 using namespace std;
 
-#define clause(s) s[6] > 0 ? 1 : 0
+template<typename T>
+constexpr auto clause(T n) { return n[1] > 0; }
+const long double ETA = 0.075, ACCURACY = 0.001;
+const int POOL_SIZE = 25000, BATCH_SIZE = 1000, FLOW_SIZE = 7;
 
 long double sigmoid(long double arg)
 {
@@ -88,8 +91,6 @@ public:
 int main()
 {
 	srand(time(0));
-	const long double ETA = 0.1, ACCURACY = 0.001;
-	const int POOL_SIZE = 20000, BATCH_SIZE = 100, FLOW_SIZE = 7;
 	vector<Input> pool(POOL_SIZE);
 	for (int i = 0; i < POOL_SIZE; i++)
 		pool[i].init(FLOW_SIZE);
