@@ -10,7 +10,7 @@
 using namespace std;
 
 template<typename T>
-constexpr auto clause(T n) { return n[1]>0; }
+constexpr auto clause(T n) { return n[1] > 0; }
 const long double ETA = 0.075, ACCURACY = 0.001;
 const int POOL_SIZE = 25000, BATCH_SIZE = 1000, FLOW_SIZE = 7;
 
@@ -107,7 +107,7 @@ int main()
 	//lr[6].init(4, 4);
 	//lr[7].init(4, 4);
 	//lr[8].init(4, 4);
-	lr[N_LAYERS-1].init(1, 8);
+	lr[N_LAYERS - 1].init(1, 8);
 
 	//открытие окна
 	sf::RenderWindow window(sf::VideoMode(1200, 600), "Neural Network", sf::Style::Titlebar | sf::Style::Close);
@@ -217,7 +217,7 @@ int main()
 				lr[0].nr[n].nabla_b -= derivative;
 			}
 		}
-		
+
 		//номер эпохи
 		sf::Font font;
 		if (!font.loadFromFile("arial.ttf"))
@@ -281,9 +281,9 @@ int main()
 			for (int n = 0; n < lr[i].size; n++)
 			{
 				for (int k = 0; k < lr[i].inputs; k++)
-					lr[i].nr[n].w[k] += lr[i].nr[n].nabla_w[k]/BATCH_SIZE;
+					lr[i].nr[n].w[k] += lr[i].nr[n].nabla_w[k] / BATCH_SIZE;
 				lr[i].nr[n].nabla_w.resize(lr[i].inputs, 0);
-				lr[i].nr[n].b += lr[i].nr[n].nabla_b/BATCH_SIZE;
+				lr[i].nr[n].b += lr[i].nr[n].nabla_b / BATCH_SIZE;
 				lr[i].nr[n].nabla_b = 0;
 			}
 		}
