@@ -1,2 +1,2 @@
 # Gradient Descent Neural Network
-Neural Network project in C++/Visual Studio 2019/SFML 2.5.1
+Neural Network project in C++/SFML 2.5.1
